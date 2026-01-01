@@ -1,0 +1,699 @@
+/* Bakery POS Modern - Custom Styles */
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #a1a1a1;
+}
+
+/* Toast Animations */
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideOut {
+    from {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+}
+
+.toast-enter {
+    animation: slideIn 0.3s ease-out forwards;
+}
+
+.toast-exit {
+    animation: slideOut 0.3s ease-in forwards;
+}
+
+/* Modal Backdrop */
+.modal-backdrop {
+    backdrop-filter: blur(4px);
+}
+
+/* Modal Content Alignment */
+.modal-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-content .space-y-4 > * {
+    margin-bottom: 0;
+}
+
+.modal-content .grid {
+    align-items: end;
+}
+
+/* Card Hover Effects */
+.card-hover {
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card-hover:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+}
+
+/* POS Grid */
+.pos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 1rem;
+}
+
+@media (min-width: 768px) {
+    .pos-grid {
+        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    }
+}
+
+/* POS Item Card */
+.pos-item {
+    background: white;
+    border-radius: 12px;
+    padding: 1rem;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s;
+    border: 2px solid transparent;
+}
+
+.pos-item:hover {
+    border-color: #ee6906;
+    transform: scale(1.02);
+}
+
+.pos-item.out-of-stock {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.pos-item .item-image {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 0.5rem;
+    background: #f3f4f6;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.pos-item .item-image img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover;
+}
+
+.pos-item .item-image i {
+    font-size: 2rem;
+    color: #9ca3af;
+}
+
+/* Cart Styles */
+.cart-item {
+    display: flex;
+    align-items: center;
+    padding: 0.75rem;
+    background: #f9fafb;
+    border-radius: 8px;
+    margin-bottom: 0.5rem;
+    gap: 0.75rem;
+}
+
+.cart-item > .flex-1 {
+    min-width: 0;
+    flex: 1 1 auto;
+}
+
+.cart-item .qty-controls {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    flex-shrink: 0;
+}
+
+.cart-item .qty-controls button {
+    width: 28px;
+    height: 28px;
+    min-width: 28px;
+    border-radius: 6px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 1rem;
+    line-height: 1;
+    transition: all 0.2s;
+    border: none;
+    cursor: pointer;
+}
+
+.cart-item .qty-controls span {
+    min-width: 2rem;
+    text-align: center;
+}
+
+/* Dashboard Stats Cards */
+.stat-card {
+    background: white;
+    border-radius: 16px;
+    padding: 1.5rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.stat-card .stat-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+}
+
+/* Form Styles */
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.form-label {
+    display: block;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #374151;
+    margin-bottom: 0.5rem;
+    line-height: 1.25;
+}
+
+.form-input {
+    width: 100%;
+    padding: 0.625rem 0.875rem;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    box-sizing: border-box;
+}
+
+/* Ensure grid children align properly */
+.grid .form-group {
+    margin-bottom: 0;
+}
+
+.grid .form-group:last-child {
+    margin-bottom: 0;
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: #ee6906;
+    box-shadow: 0 0 0 3px rgba(238, 105, 6, 0.1);
+}
+
+.form-select {
+    width: 100%;
+    padding: 0.625rem 0.875rem;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    font-size: 0.875rem;
+    background-color: white;
+    cursor: pointer;
+}
+
+.form-select:focus {
+    outline: none;
+    border-color: #ee6906;
+    box-shadow: 0 0 0 3px rgba(238, 105, 6, 0.1);
+}
+
+/* Button Styles */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.625rem 1.25rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    border-radius: 8px;
+    transition: all 0.2s;
+    cursor: pointer;
+    border: none;
+}
+
+.btn-sm {
+    padding: 0.4rem 0.75rem;
+    font-size: 0.8125rem;
+    border-radius: 6px;
+    line-height: 1;
+}
+
+.btn-icon {
+    width: 32px;
+    height: 32px;
+    min-width: 32px;
+    padding: 0;
+    border-radius: 8px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-icon i {
+    font-size: 0.875rem;
+    line-height: 1;
+}
+
+.actions-header {
+    text-align: right;
+    white-space: nowrap;
+    padding-right: 1rem !important;
+}
+
+.actions-cell {
+    width: 1%;
+    white-space: nowrap;
+    text-align: right;
+    padding-right: 1rem !important;
+}
+
+.actions-wrap {
+    display: inline-flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 0.5rem;
+}
+
+.btn-primary {
+    background-color: #ee6906;
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #d84d04;
+}
+
+.btn-secondary {
+    background-color: #6b7280;
+    color: white;
+}
+
+.btn-secondary:hover {
+    background-color: #4b5563;
+}
+
+.btn-success {
+    background-color: #10b981;
+    color: white;
+}
+
+.btn-success:hover {
+    background-color: #059669;
+}
+
+.btn-danger {
+    background-color: #ef4444;
+    color: white;
+}
+
+.btn-danger:hover {
+    background-color: #dc2626;
+}
+
+.btn-outline {
+    background-color: transparent;
+    border: 1px solid #d1d5db;
+    color: #374151;
+}
+
+.btn-outline:hover {
+    background-color: #f3f4f6;
+}
+
+/* Table Styles */
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.data-table th {
+    background-color: #f9fafb;
+    padding: 0.75rem 1rem;
+    text-align: left;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: #6b7280;
+    border-bottom: 1px solid #e5e7eb;
+    vertical-align: middle;
+}
+
+.data-table th.text-right {
+    text-align: right;
+}
+
+.data-table th.text-center {
+    text-align: center;
+}
+
+.data-table td {
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 0.875rem;
+    vertical-align: middle;
+}
+
+.data-table td.text-right {
+    text-align: right;
+}
+
+.data-table td.text-center {
+    text-align: center;
+}
+
+.data-table tbody tr:hover {
+    background-color: #f9fafb;
+}
+
+/* Badge Styles */
+.badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.25rem 0.75rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+    border-radius: 9999px;
+    line-height: 1.25;
+    vertical-align: middle;
+    white-space: nowrap;
+}
+
+.badge-success {
+    background-color: #d1fae5;
+    color: #065f46;
+}
+
+.badge-warning {
+    background-color: #fef3c7;
+    color: #92400e;
+}
+
+.badge-danger {
+    background-color: #fee2e2;
+    color: #991b1b;
+}
+
+.badge-info {
+    background-color: #dbeafe;
+    color: #1e40af;
+}
+
+.badge-gray {
+    background-color: #f3f4f6;
+    color: #374151;
+}
+
+/* Print Styles */
+@media print {
+    body * {
+        visibility: hidden;
+    }
+
+    #print-area, #print-area * {
+        visibility: visible;
+    }
+
+    #print-area {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 80mm;
+    }
+
+    .no-print {
+        display: none !important;
+    }
+}
+
+/* Receipt Styles */
+.receipt {
+    font-family: 'Courier New', monospace;
+    width: 80mm;
+    padding: 10px;
+    background: white;
+}
+
+.receipt h3 {
+    text-align: center;
+    margin-bottom: 5px;
+}
+
+.receipt .divider {
+    border-top: 1px dashed #000;
+    margin: 8px 0;
+}
+
+.receipt table {
+    width: 100%;
+    font-size: 12px;
+}
+
+.receipt table td {
+    padding: 2px 0;
+}
+
+.receipt .total-row {
+    font-weight: bold;
+    font-size: 14px;
+}
+
+/* Loading Spinner */
+.spinner {
+    border: 3px solid #f3f3f3;
+    border-top: 3px solid #ee6906;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Empty State */
+.empty-state {
+    text-align: center;
+    padding: 3rem;
+    color: #6b7280;
+}
+
+.empty-state i {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    color: #d1d5db;
+}
+
+/* Tab Styles */
+.tabs {
+    display: flex;
+    border-bottom: 2px solid #e5e7eb;
+    margin-bottom: 1.5rem;
+}
+
+.tab {
+    padding: 0.75rem 1.5rem;
+    font-weight: 500;
+    color: #6b7280;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -2px;
+    transition: all 0.2s;
+}
+
+.tab:hover {
+    color: #374151;
+}
+
+.tab.active {
+    color: #ee6906;
+    border-bottom-color: #ee6906;
+}
+
+/* Responsive Helpers */
+@media (max-width: 768px) {
+    .hide-mobile {
+        display: none !important;
+    }
+}
+
+@media (min-width: 769px) {
+    .hide-desktop {
+        display: none !important;
+    }
+}
+
+/* Additional Alignment Fixes */
+
+/* Flex utilities for proper alignment */
+.flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.flex-between {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* Table button alignment fix */
+.data-table td .btn + .btn {
+    margin-left: 0.25rem;
+}
+
+.data-table td .btn-sm {
+    vertical-align: middle;
+}
+
+/* Header alignment fixes */
+.page-header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+@media (min-width: 640px) {
+    .page-header {
+        align-items: center;
+    }
+}
+
+/* Filter section alignment */
+.filter-section {
+    display: grid;
+    gap: 1rem;
+    align-items: end;
+}
+
+/* Stat card alignment fix */
+.stat-card .flex {
+    gap: 1rem;
+}
+
+/* Empty state centering */
+.empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Tab content alignment */
+.tabs {
+    display: flex;
+    align-items: stretch;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+}
+
+.tabs::-webkit-scrollbar {
+    display: none;
+}
+
+/* Order form item row alignment */
+.order-item-row {
+    display: flex;
+    align-items: flex-end;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.order-item-row .flex-1 {
+    min-width: 150px;
+}
+
+@media (min-width: 768px) {
+    .order-item-row {
+        flex-wrap: nowrap;
+    }
+}
+
+/* POS layout fixes */
+.pos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 1rem;
+    align-items: start;
+}
+
+/* Consistent icon centering */
+.btn i:only-child {
+    margin: 0;
+}
+
+.btn i + span,
+.btn span + i {
+    margin-left: 0.5rem;
+}
+
+/* Input group alignment */
+.input-group {
+    display: flex;
+    align-items: stretch;
+}
+
+.input-group .form-input {
+    border-radius: 0;
+}
+
+.input-group .form-input:first-child {
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+}
+
+.input-group .form-input:last-child {
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+
+/* Fix select alignment with inputs */
+.form-select {
+    height: auto;
+    min-height: 42px;
+    line-height: 1.5;
+}

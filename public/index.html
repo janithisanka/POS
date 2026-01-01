@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bakery POS - Modern</title>
+
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#fef3e2',
+                            100: '#fde4c4',
+                            200: '#fbc68a',
+                            300: '#f9a44f',
+                            400: '#f78623',
+                            500: '#ee6906',
+                            600: '#d84d04',
+                            700: '#b33507',
+                            800: '#902a0d',
+                            900: '#76260e',
+                        },
+                        bakery: {
+                            cream: '#FFF8F0',
+                            brown: '#8B4513',
+                            gold: '#D4A574',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/app.css">
+</head>
+<body class="bg-gray-100 min-h-screen">
+
+    <!-- Loading Overlay -->
+    <div id="loading-overlay" class="fixed inset-0 bg-white z-50 flex items-center justify-center hidden">
+        <div class="text-center">
+            <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-600 mx-auto"></div>
+            <p class="mt-4 text-gray-600">Loading...</p>
+        </div>
+    </div>
+
+    <!-- Login Page -->
+    <div id="login-page" class="min-h-screen flex items-center justify-center bg-gradient-to-br from-primary-500 to-primary-700">
+        <div class="bg-white p-8 rounded-2xl shadow-2xl w-full max-w-md">
+            <div class="text-center mb-8">
+                <div class="w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4 bg-primary-100 overflow-hidden">
+                    <img id="company-logo-login" src="" alt="Company logo" class="w-full h-full object-cover hidden">
+                    <i class="fas fa-bread-slice text-4xl text-primary-600 fallback-logo"></i>
+                </div>
+                <h1 class="text-2xl font-bold text-gray-800" data-company-name>Bakery POS</h1>
+                <p id="company-tagline" class="text-gray-500"></p>
+                <p id="company-contact-login" class="text-gray-400 text-sm"></p>
+                <p class="text-gray-500 mt-2">Sign in to your account</p>
+            </div>
+
+            <form id="login-form" class="space-y-6">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Username</label>
+                    <div class="relative">
+                        <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-400">
+                            <i class="fas fa-user"></i>
+                        </span>
+                        <input type="text" id="login-username" name="username" required
+                            class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                            placeholder="Enter username">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Password</label>
+                    <div class="relative">
+                        <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-400">
+                            <i class="fas fa-lock"></i>
+                        </span>
+                        <input type="password" id="login-password" name="password" required
+                            class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                            placeholder="Enter password">
+                    </div>
+                </div>
+
+                <div id="login-error" class="hidden text-red-600 text-sm text-center"></div>
+
+                <button type="submit"
+                    class="w-full bg-primary-600 text-white py-3 rounded-lg font-semibold hover:bg-primary-700 transition-colors">
+                    <i class="fas fa-sign-in-alt mr-2"></i> Sign In
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Main App (Hidden until login) -->
+    <div id="main-app" class="hidden">
+        <!-- Sidebar -->
+        <aside id="sidebar" class="fixed inset-y-0 left-0 w-64 bg-gray-900 text-white transform -translate-x-full lg:translate-x-0 transition-transform duration-300 z-30">
+            <div class="p-6 border-b border-gray-800">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 rounded-lg flex items-center justify-center bg-primary-500 overflow-hidden">
+                        <img id="company-logo-sidebar" src="" alt="Company logo" class="w-full h-full object-cover hidden">
+                        <i class="fas fa-bread-slice text-white fallback-logo"></i>
+                    </div>
+                    <div>
+                        <h1 class="font-bold text-lg" data-company-name>Bakery POS</h1>
+                        <p class="text-xs text-gray-400" data-company-tagline>Modern Edition</p>
+                    </div>
+                </div>
+            </div>
+
+            <nav class="p-4 space-y-2">
+                <a href="#" data-page="dashboard" class="nav-link flex items-center space-x-3 px-4 py-3 rounded-lg bg-gray-800 text-white w-full">
+                    <i class="fas fa-tachometer-alt w-5 text-center"></i>
+                    <span>Dashboard</span>
+                </a>
+                <a href="#" data-page="pos" class="nav-link flex items-center space-x-3 px-4 py-3 rounded-lg text-gray-300 hover:bg-gray-800 hover:text-white transition-colors w-full">
+                    <i class="fas fa-cash-register w-5 text-center"></i>
+                    <span>POS Billing</span>
+                </a>
+                <a href="#" data-page="orders" class="nav-link flex items-center space-x-3 px-4 py-3 rounded-lg text-gray-300 hover:bg-gray-800 hover:text-white transition-colors w-full">
+                    <i class="fas fa-clipboard-list w-5 text-center"></i>
+                    <span>Orders</span>
+                    <span id="order-badge" class="hidden ml-auto bg-red-500 text-white text-xs px-2 py-1 rounded-full"></span>
+                </a>
+                <a href="#" data-page="products" class="nav-link flex items-center space-x-3 px-4 py-3 rounded-lg text-gray-300 hover:bg-gray-800 hover:text-white transition-colors w-full">
+                    <i class="fas fa-boxes-stacked w-5 text-center"></i>
+                    <span>Products</span>
+                </a>
+                <a href="#" data-page="stock" class="nav-link flex items-center space-x-3 px-4 py-3 rounded-lg text-gray-300 hover:bg-gray-800 hover:text-white transition-colors w-full">
+                    <i class="fas fa-warehouse w-5 text-center"></i>
+                    <span>Inventory</span>
+                </a>
+                <a href="#" data-page="users" class="nav-link flex items-center space-x-3 px-4 py-3 rounded-lg text-gray-300 hover:bg-gray-800 hover:text-white transition-colors w-full">
+                    <i class="fas fa-users w-5 text-center"></i>
+                    <span>Users</span>
+                </a>
+                <a href="#" data-page="suppliers" class="nav-link flex items-center space-x-3 px-4 py-3 rounded-lg text-gray-300 hover:bg-gray-800 hover:text-white transition-colors w-full">
+                    <i class="fas fa-truck w-5 text-center"></i>
+                    <span>Suppliers</span>
+                </a>
+                <a href="#" data-page="reports" class="nav-link flex items-center space-x-3 px-4 py-3 rounded-lg text-gray-300 hover:bg-gray-800 hover:text-white transition-colors w-full">
+                    <i class="fas fa-chart-bar w-5 text-center"></i>
+                    <span>Reports</span>
+                </a>
+                <a href="#" data-page="company" class="nav-link flex items-center space-x-3 px-4 py-3 rounded-lg text-gray-300 hover:bg-gray-800 hover:text-white transition-colors w-full">
+                    <i class="fas fa-building w-5 text-center"></i>
+                    <span>Company</span>
+                </a>
+            </nav>
+
+            <div class="absolute bottom-0 left-0 right-0 p-4 border-t border-gray-800">
+                <button id="logout-btn" class="flex items-center space-x-3 px-4 py-3 w-full text-gray-300 hover:text-red-400 transition-colors">
+                    <i class="fas fa-sign-out-alt w-5"></i>
+                    <span>Logout</span>
+                </button>
+            </div>
+        </aside>
+
+        <!-- Mobile Sidebar Overlay -->
+        <div id="sidebar-overlay" class="fixed inset-0 bg-black bg-opacity-50 z-20 hidden lg:hidden"></div>
+
+        <!-- Main Content -->
+        <div class="lg:ml-64 min-h-screen">
+            <!-- Top Bar -->
+            <header class="bg-white shadow-sm sticky top-0 z-10">
+                <div class="flex items-center justify-between px-4 py-3">
+                    <button id="mobile-menu-btn" class="lg:hidden p-2 rounded-lg hover:bg-gray-100">
+                        <i class="fas fa-bars text-gray-600"></i>
+                    </button>
+
+                    <div class="flex-1 px-4">
+                        <h2 id="page-title" class="text-xl font-semibold text-gray-800">Dashboard</h2>
+                    </div>
+
+                    <div class="flex items-center space-x-4">
+                        <div class="text-right">
+                            <p id="user-name" class="text-sm font-medium text-gray-800"></p>
+                            <p id="user-role" class="text-xs text-gray-500"></p>
+                        </div>
+                        <div class="w-10 h-10 bg-primary-100 rounded-full flex items-center justify-center">
+                            <i class="fas fa-user text-primary-600"></i>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Page Content Container -->
+            <main id="page-content" class="p-6">
+                <!-- Dynamic content loaded here -->
+            </main>
+        </div>
+    </div>
+
+    <!-- Toast Container -->
+    <div id="toast-container" class="fixed top-4 right-4 z-50 space-y-2"></div>
+
+    <!-- Modal Container -->
+    <div id="modal-container"></div>
+
+    <!-- Scripts -->
+    <script src="js/api.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/components.js"></script>
+    <script src="js/pages/dashboard.js"></script>
+    <script src="js/pages/pos.js"></script>
+    <script src="js/pages/orders.js"></script>
+    <script src="js/pages/products.js"></script>
+    <script src="js/pages/stock.js"></script>
+    <script src="js/pages/users.js"></script>
+    <script src="js/pages/suppliers.js"></script>
+    <script src="js/pages/reports.js"></script>
+    <script src="js/pages/company.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
